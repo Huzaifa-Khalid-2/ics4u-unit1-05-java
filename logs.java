@@ -1,27 +1,27 @@
 /*
- * The program shows how to get input
- *   and deal with numbers.
- *
- * @author  Huzaifa Khalid
- * @version 1.0
- * @since   2022-09-14
+*
+* This is a standard boardFoot program
+* that calculates the length required.
+*
+* @author  Huzaifa Khalid
+* @version 1.0
+* @since   2020-09-26
+*
+* This is a boardFoot length program
+*/
+
+import java.util.Scanner;
+/**
+ * This is a boardFoot program.
  */
 
-import java.io.Console;
-
-/**
-* This is the log calculator program.
-*/
-final class LogCalculator {
-    /**
-     * Maximum capacity of the truck
-     */
-    public static final float truckCapacity = 1100;
+final class BoardFoot {
 
     /**
-     * Average weight of maple logs
+     * The minimum number.
      */
-    public static final float mapleWeight = 20;
+    public static final double MIN = 0;
+
     /**
     * Prevent instantiation.
     * Throw an exception IllegalStateException.
@@ -30,8 +30,24 @@ final class LogCalculator {
     * @throws IllegalStateException
     *
     */
-    private LogCalculator() {
+
+    private BoardFoot() {
         throw new IllegalStateException("Cannot be instantiated");
+    }
+
+    /**
+     * Calculates the length.
+     *
+     * @param width width of board
+     * @param height height of board
+     * @return returns length of board
+     */
+
+    public static double boardFoot(
+                final double width, final double height) {
+        final double board = 144.0;
+        final double userLength = Math.round(board / (width * height));
+        return userLength;
     }
 
     /**
@@ -39,18 +55,37 @@ final class LogCalculator {
     *
     * @param args No args will be used
     */
+
     public static void main(final String[] args) {
 
-        final Console console = System.console();
-        final String logLengthString = console.readLine(
-                "How long are the logs(m) : ");
+        // identifying the changing variables.
+        final Scanner firstInput = new Scanner(System.in);
+        final Scanner secondInput = new Scanner(System.in);
 
-        final float logLength = Float.valueOf(logLengthString);
+        // gets user inputs.
+        System.out.print("Enter your width: ");
+        System.out.print("\nEnter your height: ");
+        // try and catch for invalid or valid inputs.
+        try {
+            // This is where it checks the inputs.
+            final double userWidth = firstInput.nextDouble();
+            final double userHeight = secondInput.nextDouble();
 
-        final float logAmount = truckCapacity / (mapleWeight * logLength);
-
-        // print out answer
-        System.out.println(logAmount + " Logs ca fit in the truck ");
-        System.out.println("\nDone.");
+            // goes through ifs to see if the input equals any
+            // of these scenario, if not the process of the program
+            // will get the information from the return in the function
+            // boardFoot, and tell the user what the length is.
+            if (userWidth <= MIN || userHeight < MIN) {
+                System.out.println("Invalid Number!");
+            } else {
+                final double userLength = boardFoot(userWidth, userHeight);
+                System.out.println("\n Your length is " + userLength
+                    + " inch(es) long.");
+            }
+            // This catches invalid inputs.
+        } catch (java.util.InputMismatchException ex) {
+            System.out.println("Invalid Input!");
+        }
+        System.out.println("\nDone!");
     }
 }
