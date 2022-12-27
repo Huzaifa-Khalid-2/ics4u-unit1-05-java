@@ -1,91 +1,63 @@
 /*
-*
-* This is a standard boardFoot program
-* that calculates the length required.
-*
-* @author  Huzaifa Khalid
-* @version 1.0
-* @since   2020-09-26
-*
-* This is a boardFoot length program
+ *
+ * The program gets the wood length
+ *
+ * @author:  Huzaifa Khalid
+ * @version: 1.0
+ * @since:   2022-12-27
 */
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
 /**
- * This is a boardFoot program.
- */
-
-final class BoardFoot {
-
+* This is the starting of main program.
+*/
+public final class Index {
     /**
-     * The minimum number.
+     * Constant VOLUME variable.
+     *
      */
-    public static final double MIN = 0;
+    public static final int VOLUME = 144;
 
     /**
-    * Prevent instantiation.
-    * Throw an exception IllegalStateException.
-    * if this ever is called
-    *
-    * @throws IllegalStateException
+    * The utility class lint exception rule.
     *
     */
-
-    private BoardFoot() {
-        throw new IllegalStateException("Cannot be instantiated");
+    private Index() {
+        // nothing called
     }
 
     /**
-     * Calculates the length.
-     *
-     * @param width width of board
-     * @param height height of board
-     * @return returns length of board
-     */
+    * The main calculation function.
+    *
+    * @param width - width number
+    * @param height - height number
+    * @return length - int
+    */
 
-    public static double boardFoot(
-                final double width, final double height) {
-        final double board = 144.0;
-        final double userLength = Math.round(board / (width * height));
-        return userLength;
+    static float lengthCalculator(final float width, final float height) {
+        final float length = VOLUME / height / width;
+        return length;
     }
-
     /**
     * The starting main() function.
     *
-    * @param args No args will be used
+    * @param args No args will be used.
     */
 
     public static void main(final String[] args) {
-
-        // identifying the changing variables.
-        final Scanner firstInput = new Scanner(System.in);
-        final Scanner secondInput = new Scanner(System.in);
-
-        // gets user inputs.
-        System.out.print("Enter your width: ");
-        System.out.print("\nEnter your height: ");
-        // try and catch for invalid or valid inputs.
         try {
-            // This is where it checks the inputs.
-            final double userWidth = firstInput.nextDouble();
-            final double userHeight = secondInput.nextDouble();
-
-            // goes through ifs to see if the input equals any
-            // of these scenario, if not the process of the program
-            // will get the information from the return in the function
-            // boardFoot, and tell the user what the length is.
-            if (userWidth <= MIN || userHeight < MIN) {
-                System.out.println("Invalid Number!");
-            } else {
-                final double userLength = boardFoot(userWidth, userHeight);
-                System.out.println("\n The wood should be " + userLength
-                    + " inch(es) long.");
-            }
-            // This catches invalid inputs.
-        } catch (java.util.InputMismatchException ex) {
-            System.out.println("Invalid Input");
+            final Scanner sc = new Scanner(System.in);
+            System.out.print("Enter the width(inch): ");
+            final float widthNumber = sc.nextFloat();
+            System.out.print("Enter the height(inch): ");
+            final float heightNumber = sc.nextFloat();
+            System.out.printf("\nThe wood should be %.1f inch(es) long.",
+                            lengthCalculator(widthNumber, heightNumber));
+        } catch (InputMismatchException ex) {
+            System.out.println("Input Invalid");
         }
-        System.out.println("\nDone!");
+        System.out.println("\nDone.");
     }
 }
