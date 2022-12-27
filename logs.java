@@ -79,7 +79,7 @@ final class BoardFoot {
                 System.out.println("Invalid Number!");
             } else {
                 final double userLength = boardFoot(userWidth, userHeight);
-                System.out.println("\n Your length is " + userLength
+                System.out.println("\n The wood should be " + userLength
                     + " inch(es) long.");
             }
             // This catches invalid inputs.
