@@ -84,7 +84,7 @@ final class BoardFoot {
             }
             // This catches invalid inputs.
         } catch (java.util.InputMismatchException ex) {
-            System.out.println("Invalid Input!");
+            System.out.println("Invalid Input");
         }
         System.out.println("\nDone!");
     }
